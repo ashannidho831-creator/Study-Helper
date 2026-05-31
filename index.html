@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Control Box</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #2c3e50; padding: 20px; }
+        .admin-container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        h2 { color: #2c3e50; text-align: center; margin-bottom: 25px; border-bottom: 3px solid #e74c3c; padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        /* CSS Error Fixed: #44); changed to #444; */
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #444; }
+        input[type="password"], textarea, input[type="text"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; }
+        .btn { background: #e74c3c; color: white; padding: 12px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold; width: 100%; }
+        .btn:hover { background: #c0392b; }
+        .hidden { display: none; }
+        .q-card { background: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; border-radius: 6px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .q-header { display: flex; justify-content: space-between; color: #7f8c8d; font-size: 13px; margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 5px; }
+        .reply-section { background: #eef2f7; padding: 15px; margin-top: 15px; border-radius: 5px; border-left: 4px solid #34495e; }
+        .reply-btn { background: #34495e; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 8px;}
+    </style>
+</head>
+<body>
+
+<div class="admin-container">
+    <div id="admin-login">
+        <h2>Admin Master Access</h2>
+        <div class="form-group">
+            <label>Enter Secret Admin Password:</label>
+            <input type="password" id="admin-pass" placeholder="Password strictly for admin">
+        </div>
+        <button class="btn" onclick="verifyAdmin()">Verify & Open Dashboard</button>
+    </div>
+
+    <div id="admin-box" class="hidden">
+        <h2>Admin Dashboard (Incoming Question Box)</h2>
+        
+        <div id="incoming-questions">
+            
+            <div class="q-card">
+                <div class="q-header">
+                    <span><b>Student Code:</b> STU-1025</span>
+                    <span><b>Subject:</b> Physics (Topic: Optics)</span>
+                </div>
+                <p style="font-size: 16px; margin-bottom: 10px;"><strong>Question:</strong> Formulate the lens maker's equation image is blurry in text book.</p>
+                <p style="font-size: 13px; color: blue; cursor: pointer;">🖼️ View Student Uploaded Pic.jpg</p>
+                
+                <div class="reply-section">
+                    <h5 style="margin-bottom: 8px; color:#2c3e50;">Send Answer to this Student:</h5>
+                    <div class="form-group">
+                        <label style="font-size: 12px;">Confirm Target Code:</label>
+                        <input type="text" value="STU-1025" readonly style="background: #ddd; padding: 5px; font-size: 12px;">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Write explanation or mathematical formula answer here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 12px;">Upload Solution Attachment (Pic):</label>
+                        <input type="file" accept="image/*">
+                    </div>
+                    <button class="reply-btn" onclick="sendAnswer()">Submit & Route Answer</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    function verifyAdmin() {
+        const pass = document.getElementById('admin-pass').value;
+        
+        // New Password '2610@@01' Set Kora Hoyeche
+        if(pass === "2610@@01") { 
+            document.getElementById('admin-login').classList.add('hidden');
+            document.getElementById('admin-box').classList.remove('hidden');
+            document.body.style.backgroundColor = "#34495e";
+        } else {
+            alert("Wrong Admin Password Access Denied!");
+        }
+    }
+
+    function sendAnswer() {
+        alert("Success: Answer updated and securely routed to Student Code panel!");
+    }
+</script>
+</body>
+</html>
